@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Woman</title>
+    <link rel="preconnect" href="stylesheets/normalize.css">
+    <link rel="stylesheet" href="stylesheets/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&family=League+Spartan:wght@300&family=Open+Sans:wght@600&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&family=League+Spartan:wght@300&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="stylesheets/estilos_Eco-Woman.css">
+    <link rel="stylesheet" href="stylesheets/estilos_Eco-Woman.css">
+
+</head>
+<body>
+    <header>
+        <h1 class="titulo">Eco-Woman<span>Calculadora Ecológica</span></h1>
+    </header>
+    <div class="nav-bg">
+        <nav class="navegacion-principal contenedor">
+            <a href="index.html" class="navfont">Inicio</a>
+            <a href="Perfil.html" class="navfont">Perfiles</a>
+            <a href="Calculadora.html" class="navfont">Calcular</a>
+            <a href="Nosotros.html" class="navfont">Nosotros</a>
+        </nav>
+    </div>
+    <br>
+    <p class="texto-generico">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio nisi quae iusto nihil fugit, autem blanditiis magni ipsa enim facere fuga dolorum tempora adipisci incidunt quo itaque ut, ipsum aperia</p>
+    <br>
+    <br>
+    <section>
+        <center><img src="logomini.png" alt=""></center>
+        <div class="text">
+            <p>Eco-Woman es</p>
+            <p>
+              <span class="word wisteria">ahorrar</span>
+              <span class="word belize">confiable</span>
+              <span class="word pomegranate">ecológica</span>
+              <span class="word green">gratuita</span>
+              <span class="word midnight">femenina</span>
+            </p>
+          </div>
+          <script> /* Esto la verdad si es copy && paste, es lo de las palabras que cambian (Eco-Woman es blah, bleh)*/
+            var words = document.getElementsByClassName('word');
+            var wordArray = [];
+            var currentWord = 0;
+
+            words[currentWord].style.opacity = 1;
+            for (var i = 0; i < words.length; i++) {
+            splitLetters(words[i]);
+            }
+
+            function changeWord() {
+            var cw = wordArray[currentWord];
+            var nw = currentWord == words.length-1 ? wordArray[0] : wordArray[currentWord+1];
+            for (var i = 0; i < cw.length; i++) {
+                animateLetterOut(cw, i);
+            }
+            
+            for (var i = 0; i < nw.length; i++) {
+                nw[i].className = 'letter behind';
+                nw[0].parentElement.style.opacity = 1;
+                animateLetterIn(nw, i);
+            }
+            
+            currentWord = (currentWord == wordArray.length-1) ? 0 : currentWord+1;
+            }
+
+            function animateLetterOut(cw, i) {
+            setTimeout(function() {
+                    cw[i].className = 'letter out';
+            }, i*80);
+            }
+
+            function animateLetterIn(nw, i) {
+            setTimeout(function() {
+                    nw[i].className = 'letter in';
+            }, 340+(i*80));
+            }
+
+            function splitLetters(word) {
+            var content = word.innerHTML;
+            word.innerHTML = '';
+            var letters = [];
+            for (var i = 0; i < content.length; i++) {
+                var letter = document.createElement('span');
+                letter.className = 'letter';
+                letter.innerHTML = content.charAt(i);
+                word.appendChild(letter);
+                letters.push(letter);
+            }
+            
+            wordArray.push(letters);
+            }
+
+            changeWord();
+            setInterval(changeWord, 4000);
+          </script>
+          <br>
+    <center>
+        <a href="Calculadora.html" class="cta">
+            <span>Calcula ahora</span>
+            <svg width="13px" height="10px" viewBox="0 0 13 10">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+        </a>
+    </center>
+    <br>
+    <hr>
+        <footer>
+            <p class="texto-footer">One-World® Cero derechos reservados</p>
+        </footer>
+    </body>
+    </html>
