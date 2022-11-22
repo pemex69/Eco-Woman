@@ -147,8 +147,7 @@ public class Menu extends javax.swing.JFrame {
         Index index = new Index();
         index.setVisible(true);
         index.setLocationRelativeTo(null);
-        SwingUtilities.windowForComponent(this).setVisible(false);
-        SwingUtilities.windowForComponent(this).dispose();
+        this.setVisible(false);
 
     }//GEN-LAST:event_Menu_btn_cerrarsesionActionPerformed
 
