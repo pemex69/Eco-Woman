@@ -1,4 +1,7 @@
+
 import java.awt.BorderLayout;
+import javax.swing.*;
+
 /**
  *
  * @author ivan0
@@ -144,8 +147,9 @@ public class Menu extends javax.swing.JFrame {
         Index index = new Index();
         index.setVisible(true);
         index.setLocationRelativeTo(null);
+        SwingUtilities.windowForComponent(this).setVisible(false);
+        SwingUtilities.windowForComponent(this).dispose();
 
-        this.setVisible(false);
     }//GEN-LAST:event_Menu_btn_cerrarsesionActionPerformed
 
     private void Menu_btn_calculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_btn_calculoActionPerformed
@@ -162,7 +166,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void Menu_btn_perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_btn_perfilActionPerformed
         // TODO add your handling code here:
-        Perfil perfil = new Perfil(nombre);
+        Perfil perfil = new Perfil(nombre, this);
         perfil.setSize(720, 481);
         perfil.setLocation(0, 0);
 

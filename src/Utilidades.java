@@ -1,6 +1,7 @@
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -38,6 +39,23 @@ public class Utilidades {
         ArrayList<Usuario> nada = new ArrayList<>();
         System.out.println("Error al leer, no se pudo cargar el archivo, regresa 'nada'");
         return nada;
+    }
+
+    public static void SaveUserArr(ArrayList<Usuario> al) {
+        try {
+            System.out.println("GUARDANDO EL SIGUIENTE OBJETO: " + al);
+            FileOutputStream f = new FileOutputStream(new File(ARCHIVO_USR));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+
+            // Escribe el objeto en el archivo
+            o.writeObject(al);
+
+            o.close();
+            f.close();
+            System.out.println("OBJETO GUARDADO ");
+        } catch (Exception notf) {
+            System.out.println("ALGO SALIO MAL AL GUARDAR EL NUEVO AL, error: " + notf);
+        }
     }
 
     public static boolean SaveNewUserToFile(Usuario pew) {
@@ -116,6 +134,20 @@ public class Utilidades {
         } catch (Exception e) {
             System.out.println("ERROR AL GUARDAR, error: " + e);
             return false;
+        }
+    }
+
+    public static void eliminarDatosCuenta(String archivo) {
+        try {
+            File fichero = new File(archivo);
+            boolean status = fichero.delete();
+            if (!status) {
+                System.out.println("El archivo no existe y/o no se pudo eliminar el archivo");
+            } else {
+                System.out.println("Archivo eliminado . . . ");
+            }
+        } catch (Exception fnf) {
+            System.out.println("No se encontro el archivo, error: " + fnf);
         }
     }
 }

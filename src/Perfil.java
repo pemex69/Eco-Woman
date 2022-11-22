@@ -15,14 +15,16 @@ import static javax.swing.JOptionPane.showMessageDialog;
  */
 public class Perfil extends javax.swing.JPanel {
 
-
     /**
      * Lee de el archivo de texto y carga las elecciones del usuario
      */
     Utilidades util = new Utilidades();
     private String nombre;
-    public Perfil(String nombre) {
+    private Menu menuPadre;
+
+    public Perfil(String nombre, Menu menuPadre) {
         this.nombre = nombre;
+        this.menuPadre = menuPadre;
         initComponents();
 
         System.out.println("CARGANDO PERFIL....");
@@ -47,7 +49,6 @@ public class Perfil extends javax.swing.JPanel {
         }
 
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -147,9 +148,9 @@ public class Perfil extends javax.swing.JPanel {
         int Toallas_diarias = (int) Perfil_sp_toallas.getValue();
         String marca = Perfil_cb_marca.getSelectedItem().toString();
         String tipo_flujo = Perfil_cb_tipo.getSelectedItem().toString();
-        String salario =  Perfil_tf_salario.getText();
+        String salario = Perfil_tf_salario.getText();
         ArrayList<PerfilEW> objetosEnArchivo = util.ReadsDataFile(nombre);
-        
+
         // GUARDAR EN ARCHIVO UN OBJETO SERIALIZADO 
         PerfilEW formData = new PerfilEW(marca, Dias_Sangrado, Toallas_diarias, tipo_flujo, Double.parseDouble(salario));
         boolean seguir = util.SaveDataToFile(formData, nombre);
@@ -165,12 +166,12 @@ public class Perfil extends javax.swing.JPanel {
     }//GEN-LAST:event_Perfil_tf_salarioActionPerformed
 
     private void Perfil_tf_salarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Perfil_tf_salarioKeyTyped
- 
+
 
     }//GEN-LAST:event_Perfil_tf_salarioKeyTyped
 
     private void Perfil_tf_salarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Perfil_tf_salarioKeyReleased
-         String texto_actual = Perfil_tf_salario.getText();
+        String texto_actual = Perfil_tf_salario.getText();
 
         try {
 
@@ -180,12 +181,37 @@ public class Perfil extends javax.swing.JPanel {
             System.out.println("ERROR AL PARSEAR UNO O MAS NUMEROS, error: " + e);
 
             showMessageDialog(null, "Ingresa un dato numérico ");
-            Perfil_tf_salario.setText(texto_actual.substring(0, texto_actual.length()-1));
+            Perfil_tf_salario.setText(texto_actual.substring(0, texto_actual.length() - 1));
         }
     }//GEN-LAST:event_Perfil_tf_salarioKeyReleased
 
     private void Perfil_btn_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Perfil_btn_borrarActionPerformed
-        // TODO add your handling code here:
+        String nombre_archivo = nombre + "_Perfil.txt";
+        util.eliminarDatosCuenta(nombre_archivo);
+        //Borrar Usuario
+        boolean seguir = false;
+        ArrayList<Usuario> objetosEnArchivo = util.ReadsUserFile();
+
+        for (int i = 0; i < objetosEnArchivo.size(); i++) {
+            if (objetosEnArchivo.get(i).getNombre().equals(nombre)) {
+                System.out.println("Objeto encontrado: " + objetosEnArchivo.get(i));
+                objetosEnArchivo.remove(i);
+                seguir = true;
+                break;
+            }
+        }
+        util.SaveUserArr(objetosEnArchivo);
+        System.out.println("Objetos en archivo: " + objetosEnArchivo);
+
+        if (seguir) {
+            showMessageDialog(null, "Se ha borrado su cuenta exitosamente '" + nombre + "' !");
+            Index index = new Index();
+            index.setVisible(true);
+            index.setLocationRelativeTo(null);
+            this.menuPadre.dispose();
+
+        }
+
     }//GEN-LAST:event_Perfil_btn_borrarActionPerformed
 
 
