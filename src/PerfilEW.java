@@ -113,7 +113,7 @@ public class PerfilEW implements Serializable {
             } else {
                 System.out.println("NO SE ELIGIO NINGUN TIPO DE FLUJO . . .");
             }
-        } else if ("Naturellla".equals(marca)) {
+        } else if ("Naturellla".equals(marca) || "Naturella".equals(marca)) {
             huella_carbono = toallas_diarias * 0.02776431f;
             if ("Abundante".equals(tipo_flujo)) {
                 gasto_toallas = toallas_diarias * 3.12;

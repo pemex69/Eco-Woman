@@ -27,8 +27,6 @@ public class Perfil extends javax.swing.JPanel {
         this.menuPadre = menuPadre;
         initComponents();
 
-        System.out.println("CARGANDO PERFIL....");
-
         // cargar en memoria y actualizar a text fields datos del archivo serializado, si no hay archivo, no cargar nada 
         //  Perfil per = cargaDePerfil ()
         System.out.println("CARGANDO PERFIL . . .");
@@ -40,6 +38,7 @@ public class Perfil extends javax.swing.JPanel {
                 Perfil_sp_sangrado.setValue(objetoEnArchivo.getDias_sangrado());
                 Perfil_sp_toallas.setValue(objetoEnArchivo.getToallas_diarias());
                 Perfil_cb_marca.setSelectedItem(objetoEnArchivo.getMarca());
+                System.out.println("\nMarca:+ " + objetoEnArchivo.getMarca() + " \n");
                 Perfil_cb_tipo.setSelectedItem(objetoEnArchivo.getTipo_flujo());
                 Perfil_tf_salario.setText(String.valueOf(objetoEnArchivo.getSalario()));
             }
@@ -74,19 +73,22 @@ public class Perfil extends javax.swing.JPanel {
         Perfil_btn_guardar2 = new javax.swing.JButton();
         Perfil_btn_guardar3 = new javax.swing.JButton();
         Perfil_btn_borrar1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Historial");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Perfil_btn_historial.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 100, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 430, 140, 30));
 
         Perfil_sp_toallas.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         Perfil_sp_toallas.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
@@ -96,7 +98,8 @@ public class Perfil extends javax.swing.JPanel {
         Perfil_sp_sangrado.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
         jPanel1.add(Perfil_sp_sangrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 60, -1));
 
-        Perfil_cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "-", "Abundante", "Regular", "Irregular" }));
+        Perfil_cb_tipo.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        Perfil_cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Abundante", "Regular", "Irregular" }));
         Perfil_cb_tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Perfil_cb_tipoActionPerformed(evt);
@@ -104,7 +107,13 @@ public class Perfil extends javax.swing.JPanel {
         });
         jPanel1.add(Perfil_cb_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 160, -1));
 
-        Perfil_cb_marca.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "-", "Saba", "Kotex", "Naturellla" }));
+        Perfil_cb_marca.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        Perfil_cb_marca.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Saba", "Kotex", "Naturella" }));
+        Perfil_cb_marca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Perfil_cb_marcaActionPerformed(evt);
+            }
+        });
         jPanel1.add(Perfil_cb_marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 160, -1));
 
         Perfil_tf_salario.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
@@ -147,7 +156,7 @@ public class Perfil extends javax.swing.JPanel {
         jPanel1.add(Perfil_img_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, -1));
 
         Perfil_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Perfil_fondo.png"))); // NOI18N
-        jPanel1.add(Perfil_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        jPanel1.add(Perfil_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, -90, -1, -1));
 
         Perfil_btn_guardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Perfil_btn_guardar.png"))); // NOI18N
         Perfil_btn_guardar1.setBorderPainted(false);
@@ -189,6 +198,16 @@ public class Perfil extends javax.swing.JPanel {
         });
         jPanel1.add(Perfil_btn_borrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Perfil_btn_eliminar.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 140, 30));
+
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -196,19 +215,22 @@ public class Perfil extends javax.swing.JPanel {
         // Cuando se presiona el boton de guardar 
 
         System.out.println("GUARDANDO DATOS. . .\n");
+        try {
 
-        int Dias_Sangrado = (int) Perfil_sp_sangrado.getValue();
-        int Toallas_diarias = (int) Perfil_sp_toallas.getValue();
-        String marca = Perfil_cb_marca.getSelectedItem().toString();
-        String tipo_flujo = Perfil_cb_tipo.getSelectedItem().toString();
-        String salario = Perfil_tf_salario.getText();
-        ArrayList<PerfilEW> objetosEnArchivo = util.ReadsDataFile(nombre);
+            int Dias_Sangrado = (int) Perfil_sp_sangrado.getValue();
+            int Toallas_diarias = (int) Perfil_sp_toallas.getValue();
+            String marca = Perfil_cb_marca.getSelectedItem().toString();
+            String tipo_flujo = Perfil_cb_tipo.getSelectedItem().toString();
+            String salario = Perfil_tf_salario.getText();
+            ArrayList<PerfilEW> objetosEnArchivo = util.ReadsDataFile(nombre);
 
-        // GUARDAR EN ARCHIVO UN OBJETO SERIALIZADO 
-        PerfilEW formData = new PerfilEW(marca, Dias_Sangrado, Toallas_diarias, tipo_flujo, Double.parseDouble(salario));
-        boolean seguir = util.SaveDataToFile(formData, nombre);
-        System.out.println("OBJETO GUARDADO ");
-
+            // GUARDAR EN ARCHIVO UN OBJETO SERIALIZADO 
+            PerfilEW formData = new PerfilEW(marca, Dias_Sangrado, Toallas_diarias, tipo_flujo, Double.parseDouble(salario));
+            boolean seguir = util.SaveDataToFile(formData, nombre);
+            System.out.println("OBJETO GUARDADO ");
+        } catch (NumberFormatException format) {
+            showMessageDialog(null, "Ingresa un valor válido en 'Salario Mensual Neto' por favor. ");
+        }
     }//GEN-LAST:event_Perfil_btn_guardarActionPerformed
 
     private void Perfil_cb_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Perfil_cb_tipoActionPerformed
@@ -284,7 +306,6 @@ public class Perfil extends javax.swing.JPanel {
     }//GEN-LAST:event_Perfil_btn_borrar1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         ArrayList<PerfilEW> objetosEnArchivo = util.ReadsDataFile(nombre);
         StringBuilder sb = new StringBuilder();
         sb.append("\n");
@@ -317,6 +338,19 @@ public class Perfil extends javax.swing.JPanel {
         showMessageDialog(null, sb.toString());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ArrayList<PerfilEW> objetosEnArchivo = util.ReadsDataFile(nombre);
+        String nombre_archivo = nombre + "_Perfil.txt";
+        for (int i = 0; i < objetosEnArchivo.size(); i++) {
+            PerfilEW datosActual = objetosEnArchivo.get(i);
+            util.eliminarDatosCuenta(nombre_archivo);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Perfil_cb_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Perfil_cb_marcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Perfil_cb_marcaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Perfil_btn_borrar;
@@ -333,6 +367,7 @@ public class Perfil extends javax.swing.JPanel {
     private javax.swing.JSpinner Perfil_sp_toallas;
     private javax.swing.JTextField Perfil_tf_salario;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

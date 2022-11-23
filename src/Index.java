@@ -1,13 +1,14 @@
+
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.io.*;
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.util.*;
+
 public class Index extends javax.swing.JFrame {
-    
+
     //valida usuario no form
     static String ARCHIVO_EW = "UsrDatos.txt";
 
-    
     public Index() {
         initComponents();
 
@@ -17,6 +18,7 @@ public class Index extends javax.swing.JFrame {
     }
 
     Utilidades util = new Utilidades();
+
     /**
      * WARNING: Do NOT modify this code. The content of this method is always
      */
@@ -94,7 +96,17 @@ public class Index extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Inicio_btn_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Inicio_btn_adminActionPerformed
-        // TODO add your handling code here:
+        String adminusr = Inicio_tf_nombre.getText();
+        String adminpass = Inicio_tf_contraseña.getText();
+        if ("admin".equals(adminusr) && "admin".equals(adminpass)) {
+            Administrador admin = new Administrador();
+            admin.setVisible(true);
+            admin.setLocationRelativeTo(null);
+            this.setVisible(false);
+        }
+        else {
+            showMessageDialog(null,"No tienes acceso de administrador. ");
+        }
     }//GEN-LAST:event_Inicio_btn_adminActionPerformed
 
     private void Inicio_btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Inicio_btn_ingresarActionPerformed
@@ -103,7 +115,7 @@ public class Index extends javax.swing.JFrame {
         String pass = Inicio_tf_contraseña.getText();
         ArrayList<Usuario> objetosEnArchivo = util.ReadsUserFile();
         boolean seguir = false;
-        for (int i = 0; i< objetosEnArchivo.size(); i++) {
+        for (int i = 0; i < objetosEnArchivo.size(); i++) {
             if (objetosEnArchivo.get(i).getNombre().equals(nombre) && objetosEnArchivo.get(i).getPass().equals(pass)) {
                 seguir = true;
                 break;
@@ -114,9 +126,8 @@ public class Index extends javax.swing.JFrame {
             menu.setVisible(true);
             menu.setLocationRelativeTo(null);
             this.setVisible(false);
-            System.out.println("Inicio de sesion exitoso");        
-        }        
-        else {
+            System.out.println("Inicio de sesion exitoso");
+        } else {
             showMessageDialog(null, "Usuario y/o contraseña incorrectos. ");
         }
 

@@ -66,7 +66,7 @@ public class Datos extends JFrame implements ActionListener, ItemListener {
 
         jPanel1 = new javax.swing.JPanel();
         Datos_cb_tipo = new javax.swing.JComboBox<>();
-        Datos_cb_marca = new javax.swing.JComboBox<>();
+        Perfil_cb_marca = new javax.swing.JComboBox<>();
         Datos_sp_toallas = new javax.swing.JSpinner();
         Datos_sp_sangrado = new javax.swing.JSpinner();
         Datos_tf_salario = new javax.swing.JTextField();
@@ -81,27 +81,24 @@ public class Datos extends JFrame implements ActionListener, ItemListener {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Datos_cb_tipo.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        Datos_cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Abundante", "Regular", "Irregular" }));
+        Datos_cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abundante", "Regular", "Irregular" }));
         jPanel1.add(Datos_cb_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 160, -1));
 
-        Datos_cb_marca.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        Datos_cb_marca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Saba", "Kotex", "Naturella" }));
-        Datos_cb_marca.setOpaque(false);
-        Datos_cb_marca.addActionListener(new java.awt.event.ActionListener() {
+        Perfil_cb_marca.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        Perfil_cb_marca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Saba", "Kotex", "Naturella" }));
+        Perfil_cb_marca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Datos_cb_marcaActionPerformed(evt);
+                Perfil_cb_marcaActionPerformed(evt);
             }
         });
-        jPanel1.add(Datos_cb_marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 160, -1));
+        jPanel1.add(Perfil_cb_marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 160, -1));
 
         Datos_sp_toallas.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         Datos_sp_toallas.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        Datos_sp_toallas.setOpaque(false);
         jPanel1.add(Datos_sp_toallas, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 60, -1));
 
         Datos_sp_sangrado.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         Datos_sp_sangrado.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
-        Datos_sp_sangrado.setOpaque(false);
         jPanel1.add(Datos_sp_sangrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 60, -1));
 
         Datos_tf_salario.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
@@ -135,22 +132,26 @@ public class Datos extends JFrame implements ActionListener, ItemListener {
 
     private void Datos_btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Datos_btn_guardarActionPerformed
         // TODO add your handling code here:
-        int dias_sangrado = (int) Datos_sp_sangrado.getValue();
-        int toallas_diarias = (int) Datos_sp_toallas.getValue();
-        String marca = Datos_cb_marca.getSelectedItem().toString();
-        String tipo_flujo = Datos_cb_tipo.getSelectedItem().toString();
-        String salario = Datos_tf_salario.getText();
+        try {
+            int dias_sangrado = (int) Datos_sp_sangrado.getValue();
+            int toallas_diarias = (int) Datos_sp_toallas.getValue();
+            String marca = Perfil_cb_marca.getSelectedItem().toString();
+            String tipo_flujo = Datos_cb_tipo.getSelectedItem().toString();
+            String salario = Datos_tf_salario.getText();
 
-        //GUARDAR EN ARCHIVO OBJETO SERIALIZADO
-        PerfilEW NuevoUsuario = new PerfilEW(marca, dias_sangrado, toallas_diarias, tipo_flujo, Double.parseDouble(salario));
-        boolean seguir = util.SaveDataToFile(NuevoUsuario, nombre);
-        System.out.println("OBJETO GUARDADO ");
+            //GUARDAR EN ARCHIVO OBJETO SERIALIZADO
+            PerfilEW NuevoUsuario = new PerfilEW(marca, dias_sangrado, toallas_diarias, tipo_flujo, Double.parseDouble(salario));
+            boolean seguir = util.SaveDataToFile(NuevoUsuario, nombre);
+            System.out.println("OBJETO GUARDADO ");
 
-        if (seguir) {
-            Menu menu = new Menu(nombre);
-            menu.setVisible(true);
-            menu.setLocationRelativeTo(null);
-            this.setVisible(false);
+            if (seguir) {
+                Menu menu = new Menu(nombre);
+                menu.setVisible(true);
+                menu.setLocationRelativeTo(null);
+                this.setVisible(false);
+            }
+        } catch (NumberFormatException format) {
+            showMessageDialog(null, "Ingresa un valor válido en 'Salario Mensual Neto' por favor. ");
         }
     }//GEN-LAST:event_Datos_btn_guardarActionPerformed
 
@@ -158,22 +159,9 @@ public class Datos extends JFrame implements ActionListener, ItemListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_Datos_tf_salarioActionPerformed
 
-    private void Datos_cb_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Datos_cb_marcaActionPerformed
+    private void Perfil_cb_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Perfil_cb_marcaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Datos_cb_marcaActionPerformed
-    private void Perfil_tf_salarioKeyReleased(java.awt.event.KeyEvent evt) {
-        String texto_actual = Datos_tf_salario.getText();
-
-        try {
-            Double.parseDouble(texto_actual);
-
-        } catch (Exception e) {
-            System.out.println("ERROR AL PARSEAR UNO O MAS NUMEROS, error: " + e);
-            showMessageDialog(null, "Ingresa un dato numérico ");
-            Datos_tf_salario.setText(texto_actual.substring(0, texto_actual.length() - 1));
-        }
-
-    }
+    }//GEN-LAST:event_Perfil_cb_marcaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,13 +200,13 @@ public class Datos extends JFrame implements ActionListener, ItemListener {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Datos_btn_guardar;
-    private javax.swing.JComboBox<String> Datos_cb_marca;
     private javax.swing.JComboBox<String> Datos_cb_tipo;
     private javax.swing.JLabel Datos_fondo;
     private javax.swing.JLabel Datos_img_perfil;
     private javax.swing.JSpinner Datos_sp_sangrado;
     private javax.swing.JSpinner Datos_sp_toallas;
     private javax.swing.JTextField Datos_tf_salario;
+    private javax.swing.JComboBox<String> Perfil_cb_marca;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 

@@ -40,6 +40,7 @@ public class Crear_Perfil extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        Crear_btn_regresar = new javax.swing.JButton();
         Crear_btn_continuar = new javax.swing.JButton();
         Craer_tf_contraseña = new javax.swing.JTextField();
         Crear_tf_nombre = new javax.swing.JTextField();
@@ -51,6 +52,16 @@ public class Crear_Perfil extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Crear_btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Crear_btn_regresar.png"))); // NOI18N
+        Crear_btn_regresar.setBorderPainted(false);
+        Crear_btn_regresar.setContentAreaFilled(false);
+        Crear_btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Crear_btn_regresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Crear_btn_regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, 40, -1));
 
         Crear_btn_continuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Crear_btn_continuar.png"))); // NOI18N
         Crear_btn_continuar.setBorderPainted(false);
@@ -119,6 +130,15 @@ public class Crear_Perfil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Craer_tf_contraseñaActionPerformed
 
+    private void Crear_btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Crear_btn_regresarActionPerformed
+        // TODO add your handling code here:
+        Index index = new Index();
+        index.setVisible(true);
+        index.setLocationRelativeTo(null);
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_Crear_btn_regresarActionPerformed
+
     //DRY pero igual es un proyecto de tercer semestre no le hagas
     /**
      * @param args the command line arguments
@@ -162,6 +182,7 @@ public class Crear_Perfil extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Craer_tf_contraseña;
     private javax.swing.JButton Crear_btn_continuar;
+    private javax.swing.JButton Crear_btn_regresar;
     private javax.swing.JLabel Crear_fondo;
     private javax.swing.JLabel Crear_img_perfil;
     private javax.swing.JTextField Crear_tf_nombre;
