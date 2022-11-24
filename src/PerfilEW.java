@@ -1,18 +1,7 @@
-
-import javax.swing.*;
 import java.io.Serializable;
 import sources.ResultadosEW;
-import java.util.*;
 import java.lang.*;
-import java.io.*;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-import javax.lang.model.element.Element;
 
-/**
- *
- * @author que
- */
 public class PerfilEW implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,11 +29,6 @@ public class PerfilEW implements Serializable {
         return "Dias de sangrado: " + dias_sangrado + ", Toallas diarias: " + toallas_diarias + ", Marca de toallas: " + marca + ", Tipo de flujo: " + tipo_flujo + ", Salario Mensual Neto: " + salario;
     }
 
-    
-    
-    
-    
-    
     public String getMarca() {
         return marca;
     }
@@ -86,10 +70,17 @@ public class PerfilEW implements Serializable {
     }
 
     public ResultadosEW calculoResultado() {
-        double gasto_toallas = 0, ingresos_mensuales, huella_carbono = 0, sol;        
+        double gasto_toallas = 0, ingresos_mensuales, huella_carbono = 0, sol;
         ingresos_mensuales = salario;
         //S0LVE
+
+        /*
+        VALORES DE CO2 ORIGINALES NO BORRAR
+        SABA: 0.0261261
+        KOTEX: 0.02485
+        NATURELLA: 0.02776431
         
+         */
         toallas_diarias *= dias_sangrado;
         if ("Saba".equals(marca)) {
             huella_carbono = toallas_diarias * 0.0261261f;
@@ -128,7 +119,6 @@ public class PerfilEW implements Serializable {
             System.out.println("NO SE ELIGIO NINGUNA MARCA . . .");
         }
 
-        
         if (salario == 0) {
             ingresos_mensuales = 5258.1;
         }

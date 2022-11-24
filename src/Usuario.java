@@ -1,10 +1,9 @@
 import java.io.Serializable;
 
-public class Usuario implements Serializable{
-    
+public class Usuario implements Serializable {
+
     private String nombre, pass;
-    
-    
+
     Usuario() {
     }
 
@@ -14,12 +13,12 @@ public class Usuario implements Serializable{
         this.nombre = nombre;
         this.pass = pass;
     }
- 
+
     @Override
     public String toString() {
-        return "Nombre_: " + nombre + " . . . ";
+        return "Usuario: " + nombre + "\n" + "Contraseña: " + pass + "\n";
     }
-    
+
     public String getNombre() {
         return nombre;
     }

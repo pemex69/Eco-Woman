@@ -36,7 +36,7 @@ public class Nosotros extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Nosotros_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Nosotros_fondo.png"))); // NOI18N
-        jPanel1.add(Nosotros_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        jPanel1.add(Nosotros_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         Nosotros_img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Nosotros_img.png"))); // NOI18N
         jPanel1.add(Nosotros_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));

@@ -1,6 +1,3 @@
-
-import static javax.swing.JOptionPane.showMessageDialog;
-import java.io.*;
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.util.*;
 
@@ -8,10 +5,11 @@ public class Index extends javax.swing.JFrame {
 
     //valida usuario no form
     static String ARCHIVO_EW = "UsrDatos.txt";
+    String nombre;
 
-    public Index() {
+    public Index(String nombre) {
+        this.nombre = nombre;
         initComponents();
-
         this.setTitle("Eco-Woman");
         this.setLocationRelativeTo(null);
 
@@ -77,11 +75,6 @@ public class Index extends javax.swing.JFrame {
         jPanel1.add(Inicio_tf_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, 180, -1));
 
         Inicio_tf_nombre.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        Inicio_tf_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Inicio_tf_nombreActionPerformed(evt);
-            }
-        });
         jPanel1.add(Inicio_tf_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 180, -1));
 
         Inicio_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inicio_fondo.png"))); // NOI18N
@@ -99,13 +92,12 @@ public class Index extends javax.swing.JFrame {
         String adminusr = Inicio_tf_nombre.getText();
         String adminpass = Inicio_tf_contraseña.getText();
         if ("admin".equals(adminusr) && "admin".equals(adminpass)) {
-            Administrador admin = new Administrador();
+            Administrador admin = new Administrador(nombre);
             admin.setVisible(true);
             admin.setLocationRelativeTo(null);
             this.setVisible(false);
-        }
-        else {
-            showMessageDialog(null,"No tienes acceso de administrador. ");
+        } else {
+            showMessageDialog(null, "No tienes acceso de administrador. ");
         }
     }//GEN-LAST:event_Inicio_btn_adminActionPerformed
 
@@ -135,16 +127,12 @@ public class Index extends javax.swing.JFrame {
 
     private void Inicio_btn_crearcuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Inicio_btn_crearcuentaActionPerformed
         // TODO add your handling code here:
-        Crear_Perfil crear = new Crear_Perfil();
+        Crear_Perfil crear = new Crear_Perfil(nombre);
         crear.setVisible(true);
         crear.setLocationRelativeTo(null);
 
         this.setVisible(false);
     }//GEN-LAST:event_Inicio_btn_crearcuentaActionPerformed
-
-    private void Inicio_tf_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Inicio_tf_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Inicio_tf_nombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,7 +164,7 @@ public class Index extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Index().setVisible(true);
+                new Index("test").setVisible(true);
             }
         });
     }
