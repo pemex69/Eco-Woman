@@ -1,3 +1,4 @@
+
 import java.util.*;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -17,6 +18,7 @@ public class Administrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        indexspinner = new javax.swing.JSpinner();
         Adminsitrador_btn_mostrar1 = new javax.swing.JButton();
         DeleteUsr = new javax.swing.JTextField();
         Adminsitrador_btn_mostrar = new javax.swing.JButton();
@@ -30,6 +32,7 @@ public class Administrador extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(indexspinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 50, 20));
 
         Adminsitrador_btn_mostrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Adminsitrador_btn_mostrar.png"))); // NOI18N
         Adminsitrador_btn_mostrar1.setBorderPainted(false);
@@ -47,7 +50,7 @@ public class Administrador extends javax.swing.JFrame {
                 DeleteUsrActionPerformed(evt);
             }
         });
-        jPanel1.add(DeleteUsr, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 180, -1));
+        jPanel1.add(DeleteUsr, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 150, 20));
 
         Adminsitrador_btn_mostrar.setBorderPainted(false);
         Adminsitrador_btn_mostrar.setContentAreaFilled(false);
@@ -96,37 +99,81 @@ public class Administrador extends javax.swing.JFrame {
     private void Admin_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Admin_SaveActionPerformed
         //borra usuario
         String nombre_archivo = nombre + "_Perfil.txt";
-        try {
-            boolean found = false, adminacc = false, empty = false;
-            util.eliminarDatosCuenta(nombre_archivo);
-            ArrayList<Usuario> objetosEnArchivo = util.ReadsUserFile();
-            String UsuarioBorrar = DeleteUsr.getText();
-            if ("admin".equals(UsuarioBorrar)) {
-                adminacc = true;
-            } else if ("".equals(UsuarioBorrar)) {
-                empty = true;
-            }
-            if (!adminacc) {
-                for (int i = 0; i < objetosEnArchivo.size(); i++) {
-                    if (objetosEnArchivo.get(i).getNombre().equals(UsuarioBorrar)) {
-                        System.out.println("Objeto encontrado: " + objetosEnArchivo.get(i));
-                        System.out.println("Removiendo: " + UsuarioBorrar + ", coincide con: " + objetosEnArchivo.get(i));
-                        objetosEnArchivo.remove(i);
-                        showMessageDialog(null, "Se ha eliminado la cuenta del usuario '" + UsuarioBorrar + "' . ");
-                        found = true;
-                        break;
+        int index = (int) indexspinner.getValue();
+        int indexfromal;
+        String nombreAL = "";
+        boolean indexer = false;
+        if (DeleteUsr.getText().isEmpty()) {
+            indexer = true;
+        }
+        if (indexer) {
+            try {
+                boolean indexfound = false, adminindex = false;
+                System.out.println("borrando con indexer");
+                ArrayList<Usuario> objetosEnArchivo = util.ReadsUserFile();
+                for (int i =0 ; i < objetosEnArchivo.size(); i++) {
+                    nombreAL = objetosEnArchivo.get(i).getNombre();
+                }
+                nombre_archivo = nombreAL + "_Perfil.txt";
+                util.eliminarDatosCuenta(nombre_archivo);
+                System.out.println("index: " + index);
+                if (index == 0) {
+                    adminindex = true;
+                }
+                if (!adminindex) {
+                    for (int i = 0; i < objetosEnArchivo.size(); i++) {
+                        System.out.println(objetosEnArchivo.get(i));
+                        System.out.println("\n\n\n\n\n");
+                        if (i == index) {
+                            System.out.println("index :" + index + ", usuario: " + objetosEnArchivo.get(i).getNombre());
+                            objetosEnArchivo.remove(i);
+                            showMessageDialog(null, "Se ha eliminado la cuenta con numero '" + index + " correctamente. ");
+                            indexfound = true;
+                        }
+                        util.SaveUserArr(objetosEnArchivo);
+                    }
+                    if (!indexfound) {
+                        showMessageDialog(null, "No se encontro dicha cuenta. ");
+                        System.out.println(index);
+                    }
+                    if (adminindex) {
+                        showMessageDialog(null, "No se puede borrar la cuenta de administrador. ");
                     }
                 }
-                util.SaveUserArr(objetosEnArchivo);
-                System.out.println("objetos en archivo: " + objetosEnArchivo) ;
-                if (!found && !empty) {
-                    showMessageDialog(null, "No se encontró la cuenta '" + UsuarioBorrar + "' . ");
-                }
-            } else {
-                showMessageDialog(null, "No se puede borrar la cuenta de administrador . ");
+            } catch (Exception e) {
             }
-        } catch (Exception e) {
-            System.out.println("ALGO SALIO MAL, error: " + e);
+        } else if (!indexer) {
+            try {
+                boolean found = false, adminacc = false, empty = false;
+                util.eliminarDatosCuenta(nombre_archivo);
+                ArrayList<Usuario> objetosEnArchivo = util.ReadsUserFile();
+                String UsuarioBorrar = DeleteUsr.getText();
+                if ("admin".equals(UsuarioBorrar)) {
+                    adminacc = true;
+                } else if ("".equals(UsuarioBorrar)) {
+                    empty = true;
+                }
+                if (!adminacc) {
+                    for (int i = 0; i < objetosEnArchivo.size(); i++) {
+                        if (objetosEnArchivo.get(i).getNombre().equals(UsuarioBorrar)) {
+                            System.out.println("Objeto encontrado: " + objetosEnArchivo.get(i));
+                            System.out.println("Removiendo: " + UsuarioBorrar + ", coincide con: " + objetosEnArchivo.get(i));
+                            objetosEnArchivo.remove(i);
+                            showMessageDialog(null, "Se ha eliminado la cuenta del usuario '" + UsuarioBorrar + "' . ");
+                            found = true;
+                            break;
+                        }
+                    }
+                    util.SaveUserArr(objetosEnArchivo);
+                    if (!found && !empty) {
+                        showMessageDialog(null, "No se encontró la cuenta '" + UsuarioBorrar + "' . ");
+                    }
+                } else {
+                    showMessageDialog(null, "No se puede borrar la cuenta de administrador . ");
+                }
+            } catch (Exception e) {
+                System.out.println("ALGO SALIO MAL, error: " + e);
+            }
         }
     }//GEN-LAST:event_Admin_SaveActionPerformed
 
@@ -136,6 +183,9 @@ public class Administrador extends javax.swing.JFrame {
         sb.append("LISTA DE USUARIOS: \n\n");
         for (int i = 0; i < objetosEnArchivo.size(); i++) {
             Usuario datosUsr = objetosEnArchivo.get(i);
+            sb.append(i);
+            sb.append(" ");
+            sb.append(" ");
             sb.append(datosUsr);
             sb.append("\n");
         }
@@ -189,6 +239,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton Adminsitrador_btn_mostrar;
     private javax.swing.JButton Adminsitrador_btn_mostrar1;
     private javax.swing.JTextField DeleteUsr;
+    private javax.swing.JSpinner indexspinner;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

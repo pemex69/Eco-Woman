@@ -49,7 +49,7 @@ public class Index extends javax.swing.JFrame {
                 Inicio_btn_crearcuentaActionPerformed(evt);
             }
         });
-        jPanel1.add(Inicio_btn_crearcuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, -1, -1));
+        jPanel1.add(Inicio_btn_crearcuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 340, -1, -1));
 
         Inicio_btn_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inicio_btn_admin.png"))); // NOI18N
         Inicio_btn_admin.setBorderPainted(false);
@@ -59,7 +59,7 @@ public class Index extends javax.swing.JFrame {
                 Inicio_btn_adminActionPerformed(evt);
             }
         });
-        jPanel1.add(Inicio_btn_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, -1, -1));
+        jPanel1.add(Inicio_btn_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, -1, -1));
 
         Inicio_btn_ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inicio_btn_ingresar.png"))); // NOI18N
         Inicio_btn_ingresar.setBorderPainted(false);
@@ -80,7 +80,7 @@ public class Index extends javax.swing.JFrame {
         Inicio_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inicio_fondo.png"))); // NOI18N
         jPanel1.add(Inicio_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        Inicio_img_perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inicio_img_perfil.png"))); // NOI18N
+        Inicio_img_perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inicio_perfil1.png"))); // NOI18N
         jPanel1.add(Inicio_img_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 480));

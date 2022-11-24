@@ -94,18 +94,26 @@ public class Datos extends JFrame implements ActionListener, ItemListener {
             String marca = Perfil_cb_marca.getSelectedItem().toString();
             String tipo_flujo = Datos_cb_tipo.getSelectedItem().toString();
             String salario = Datos_tf_salario.getText();
-            //GUARDAR EN ARCHIVO OBJETO SERIALIZADO
-            PerfilEW NuevoUsuario = new PerfilEW(marca, dias_sangrado, toallas_diarias, tipo_flujo, Double.parseDouble(salario));
-            boolean seguir = util.SaveDataToFile(NuevoUsuario, nombre);
-            System.out.println("OBJETO GUARDADO ");
-
-            if (seguir) {
-                Menu menu = new Menu(nombre);
-                menu.setVisible(true);
-                menu.setLocationRelativeTo(null);
-                this.setVisible(false);
+            boolean pos = false;
+            double salariopos = Double.parseDouble(salario);
+            if (salariopos >= 0) {
+                pos = true;
+            } else {
+                showMessageDialog(null, "Ingresa un valor positivo en 'Salario Mensual Neto' por favor. ");
             }
+            if (pos) {
+                //GUARDAR EN ARCHIVO OBJETO SERIALIZADO
+                PerfilEW NuevoUsuario = new PerfilEW(marca, dias_sangrado, toallas_diarias, tipo_flujo, Double.parseDouble(salario));
+                boolean seguir = util.SaveDataToFile(NuevoUsuario, nombre);
+                System.out.println("OBJETO GUARDADO ");
 
+                if (seguir) {
+                    Menu menu = new Menu(nombre);
+                    menu.setVisible(true);
+                    menu.setLocationRelativeTo(null);
+                    this.setVisible(false);
+                }
+            }
         } catch (NumberFormatException format) {
             showMessageDialog(null, "Ingresa un valor válido en 'Salario Mensual Neto' por favor. ");
         }

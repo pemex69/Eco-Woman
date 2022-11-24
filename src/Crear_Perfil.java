@@ -58,7 +58,7 @@ public class Crear_Perfil extends javax.swing.JFrame {
         Crear_tf_nombre.setToolTipText("");
         jPanel1.add(Crear_tf_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 180, -1));
 
-        Crear_img_perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Crear_img_perfil.png"))); // NOI18N
+        Crear_img_perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Crear_perfil.png"))); // NOI18N
         jPanel1.add(Crear_img_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, -1, -1));
 
         Crear_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Crear_fondo.png"))); // NOI18N

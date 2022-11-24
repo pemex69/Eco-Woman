@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -36,6 +37,7 @@ public class Perfil extends javax.swing.JPanel {
         }
 
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -156,7 +158,6 @@ public class Perfil extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     private void Perfil_btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Perfil_btn_guardarActionPerformed
         // Cuando se presiona el boton de guardar 
-
         System.out.println("GUARDANDO DATOS. . .\n");
         try {
             int Dias_Sangrado = (int) Perfil_sp_sangrado.getValue();
@@ -186,30 +187,37 @@ public class Perfil extends javax.swing.JPanel {
     }//GEN-LAST:event_Perfil_tf_salarioKeyReleased
     private void Perfil_btn_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Perfil_btn_borrarActionPerformed
         String nombre_archivo = nombre + "_Perfil.txt";
-        util.eliminarDatosCuenta(nombre_archivo);
-        //Borrar Usuario
-        boolean seguir = false;
-        ArrayList<Usuario> objetosEnArchivo = util.ReadsUserFile();
+        boolean admin = false;
+        if ("admin".equals(nombre)) {
+            admin = true;
+        }
+        if (admin) {
+            showMessageDialog(null, "No puedes borrar el perfil de administrador ");
+        } else {
+            util.eliminarDatosCuenta(nombre_archivo);
+            //Borrar Usuario
+            boolean seguir = false;
+            ArrayList<Usuario> objetosEnArchivo = util.ReadsUserFile();
 
-        for (int i = 0; i < objetosEnArchivo.size(); i++) {
-            if (objetosEnArchivo.get(i).getNombre().equals(nombre)) {
-                System.out.println("Objeto encontrado: " + objetosEnArchivo.get(i));
-                objetosEnArchivo.remove(i);
-                seguir = true;
-                break;
+            for (int i = 0; i < objetosEnArchivo.size(); i++) {
+                if (objetosEnArchivo.get(i).getNombre().equals(nombre)) {
+                    System.out.println("Objeto encontrado: " + objetosEnArchivo.get(i));
+                    objetosEnArchivo.remove(i);
+                    seguir = true;
+                    break;
+                }
+            }
+            util.SaveUserArr(objetosEnArchivo);
+            System.out.println("Objetos en archivo: " + objetosEnArchivo);
+
+            if (seguir) {
+                showMessageDialog(null, "Se ha borrado su cuenta exitosamente '" + nombre + "' !");
+                Index index = new Index(nombre);
+                index.setVisible(true);
+                index.setLocationRelativeTo(null);
+                this.menuPadre.dispose();
             }
         }
-        util.SaveUserArr(objetosEnArchivo);
-        System.out.println("Objetos en archivo: " + objetosEnArchivo);
-
-        if (seguir) {
-            showMessageDialog(null, "Se ha borrado su cuenta exitosamente '" + nombre + "' !");
-            Index index = new Index(nombre);
-            index.setVisible(true);
-            index.setLocationRelativeTo(null);
-            this.menuPadre.dispose();
-        }
-
     }//GEN-LAST:event_Perfil_btn_borrarActionPerformed
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ArrayList<PerfilEW> objetosEnArchivo = util.ReadsDataFile(nombre);
